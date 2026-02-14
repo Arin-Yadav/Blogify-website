@@ -6,11 +6,13 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
-dotenv.config();
+import blogRoutes from './routes/blogRoutes.js'
 
+dotenv.config();
 const app = express();
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({ 
@@ -19,9 +21,13 @@ app.use(
   }),
 );
 
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/comment", commentRoutes);
+// Serve uploaded images 
+app.use("/uploads", express.static("uploads"));
+
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
+app.use("/comment", commentRoutes);
+app.use("/blogs", blogRoutes);
 
 // Connect to MongoDB on startup
 mongoose

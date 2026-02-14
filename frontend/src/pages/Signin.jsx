@@ -20,7 +20,7 @@ const Signin = () => {
   const onSubmit = async (values) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/signin`,
+        `${import.meta.env.VITE_SERVER_URL}/auth/signin`,
         values,
         { withCredentials: true },
       );

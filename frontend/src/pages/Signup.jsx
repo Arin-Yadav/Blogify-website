@@ -19,7 +19,7 @@ const Signup = () => {
 
   const onSubmit = async (values) => {
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, values);
+      await axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/signup`, values);
       showToast("success", "Account created successfully!");
       navigate("/signin");
     } catch (error) {

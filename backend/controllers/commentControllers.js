@@ -33,7 +33,7 @@ async function getComments(req, res, next) {
   try {
     const { blogid } = req.params;
     const comments = await Comment.find({ blogid })
-      .populate("author", "fullName avatar")
+      .populate("author", "fullName")
       .sort({ createdAt: -1 })
       .lean()
       .exec();
@@ -46,6 +46,7 @@ async function getComments(req, res, next) {
   }
 }
 
+// for admin
 async function getAllComments(req, res, next) {
   try {
     const user = req.user;

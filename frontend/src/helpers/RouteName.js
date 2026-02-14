@@ -16,5 +16,6 @@ export const RouteSingleBlogDetails = (id) => {
 };
 
 
+export const RouteCreateBlog = "/create";
 export const RouteComments = "/comments";
 export const RouteUsers = "/users";

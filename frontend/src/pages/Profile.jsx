@@ -28,7 +28,7 @@ const Profile = () => {
     error: _error,
     // error,
   } = useFetch(
-    `${import.meta.env.VITE_API_URL}/user/get-user/${userDetails._id}`,
+    `${import.meta.env.VITE_SERVER_URL}/user/get-user/${userDetails._id}`,
     { withCredentials: true },
   );
 
@@ -49,7 +49,7 @@ const Profile = () => {
 
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_API_URL}/user/update-user/${userData.user._id}`,
+        `${import.meta.env.VITE_SERVER_URL}/user/update-user/${userData.user._id}`,
         formData,
         {
           withCredentials: true,

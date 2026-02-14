@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Signin from "./pages/Signin";
 import {
+  RouteCreateBlog,
   RouteIndex,
   RouteProfile,
   RouteSignin,
@@ -17,6 +18,7 @@ import Profile from "./pages/Profile";
 import SingleBlogDetails from "./pages/Blog/SingleBlogDetails";
 import Users from "./pages/Users";
 import AdminRouteProtection from "./components/AdminRouteProtection";
+import CreateBlog from "./components/CreateBlog";
 
 const App = () => {
   return (
@@ -27,6 +29,7 @@ const App = () => {
 
           <Route element={<ProtectedRoute />}>
             <Route path={RouteProfile} element={<Profile />} />
+            <Route path={RouteCreateBlog} element={<CreateBlog />} />
           </Route>
 
           <Route element={<AdminRouteProtection />}>

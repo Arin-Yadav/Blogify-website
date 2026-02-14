@@ -6,7 +6,7 @@ const HeroSection = () => {
   const user = useSelector((state) => state.user);
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-4 sm:px-8 py-12 bg-gradient-to-b from-teal-50 via-white to-teal-100 overflow-hidden">
+    <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-4 sm:px-8 py-12 bg-linear-to-b from-teal-50 via-white to-teal-100 overflow-hidden">
       {/* Decorative background shapes */}
       <div className="absolute inset-0 -z-10 flex justify-center">
         <div className="w-72 h-72 bg-teal-200 rounded-full blur-3xl opacity-30 animate-pulse"></div>
@@ -38,12 +38,10 @@ const HeroSection = () => {
           className="relative block w-full h-16 sm:h-24 md:h-32 text-teal-200"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
-          viewBox="0 0 1200 120"
-        >
+          viewBox="0 0 1200 120">
           <path
             d="M0,0 C600,120 600,0 1200,120 L1200,0 L0,0 Z"
-            fill="currentColor"
-          ></path>
+            fill="currentColor"></path>
         </svg>
       </div>
     </section>

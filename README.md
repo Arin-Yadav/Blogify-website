@@ -73,7 +73,7 @@ touch .env
 Add your API URL:
 
 ```
-VITE_API_URL=Your_API_URL
+VITE_SERVER_URL=Your_API_URL
 ```
 
 Start the frontend:

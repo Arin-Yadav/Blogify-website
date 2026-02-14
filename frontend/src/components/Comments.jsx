@@ -2,12 +2,12 @@ import { useForm } from "react-hook-form";
 import { showToast } from "../helpers/ShowToast";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommentsList from "./CommentsList";
 
 const Comments = ({ props: blogId }) => {
   const user = useSelector((state) => state.user);
-  const [newComments, setNewComments] = useState();
+  const [comments, setComments] = useState([]);
 
   const {
     register,
@@ -16,36 +16,51 @@ const Comments = ({ props: blogId }) => {
     reset,
   } = useForm();
 
+  // Fetch comments on mount
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_SERVER_URL}/comment/get-comments/${blogId}`,
+          { withCredentials: true }
+        );
+        setComments(res.data.comments);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchComments();
+  }, [blogId]);
+
+  // Submit new comment
   const onSubmit = async (values) => {
     if (!user?.isLoggedIn) {
-      // 🚫 Block submission and show message
       showToast("error", "Please sign in to comment.");
       return;
     }
-
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/comment/create`,
+        `${import.meta.env.VITE_SERVER_URL}/comment/create`,
         { ...values, blogId },
-        { withCredentials: true },
+        { withCredentials: true }
       );
-      // console.log(response.data.comment);
-      setNewComments(response.data.comment);
-      reset({ comment: "" }); // clear only the comment field
+      // Append instantly
+      setComments((prev) => [...prev, response.data.comment]);
+      reset({ comment: "" });
       showToast("success", response.data.message);
     } catch (error) {
       console.log(error);
       showToast(
         "error",
         error.response?.data?.message ||
-          "Error saving changes. Please try again.",
+          "Error saving changes. Please try again."
       );
     }
   };
 
   return (
     <div className="mt-8">
-      <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Comment
@@ -63,17 +78,17 @@ const Comments = ({ props: blogId }) => {
           )}
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+        >
           Submit
         </button>
       </form>
 
-      {/* Comment List */}
+      {/* Pass comments down */}
       <div className="mt-6">
-        <CommentsList props={{ newComments }} />
+        <CommentsList comments={comments} />
       </div>
     </div>
   );

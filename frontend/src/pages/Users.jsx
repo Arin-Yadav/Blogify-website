@@ -10,14 +10,14 @@ const Users = () => {
   const [freshdata, setFreshdata] = useState(false);
 
   const { data, loading, _error } = useFetch(
-    `${import.meta.env.VITE_API_URL}/user/get-all-users`,
+    `${import.meta.env.VITE_SERVER_URL}/user/get-all-users`,
     { withCredentials: true },
     [freshdata],
   );
 
   const handleDelete = async (id) => {
     const response = await deleteData(
-      `${import.meta.env.VITE_API_URL}/user/delete/${id}`,
+      `${import.meta.env.VITE_SERVER_URL}/user/delete/${id}`,
     );
     if (response) {
       setFreshdata(!freshdata);

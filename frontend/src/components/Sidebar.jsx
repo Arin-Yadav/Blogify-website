@@ -1,25 +1,26 @@
 import { LuUsers } from "react-icons/lu";
 import { IoHomeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  RouteIndex,
-  RouteUsers,
-} from "../helpers/RouteName";
-import { FaRegUser, FaUserCircle } from "react-icons/fa";
+import { RouteCreateBlog, RouteIndex, RouteUsers } from "../helpers/RouteName";
+import { FaRegUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../redux/slices/user.slice";
 import { showToast } from "../helpers/ShowToast";
 import axios from "axios";
+import { GrBlog } from "react-icons/gr";
 
 export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+  const fullName = user?.user?.fullName;
+  const email = user?.user?.email;
+  // console.log(user);
 
   const handleSignout = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/auth/signout`,
+        `${import.meta.env.VITE_SERVER_URL}/auth/signout`,
         { withCredentials: true },
       );
       dispatch(removeUser());
@@ -51,24 +52,19 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
           >
             {/* Navigation */}
             <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-              {user?.user.isLoggedIn ? (
-                <div className="flex items-center pb-2">
-                  <img
-                    src={user?.user.avatar}
-                    alt="avatar"
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover cursor-pointer"
-                  />
-                  <div className="px-4 text-sm text-gray-700">
-                    <p className="font-semibold truncate">
-                      {user?.user.fullName}
-                    </p>
-                    <p className="text-xs text-gray-500 truncate">
-                      {user?.user.email}
-                    </p>
+              {user?.isLoggedIn && (
+                <div className="flex gap-4 items-center">
+                  <h1
+                    className={`w-10 h-10 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center font-semibold`}>
+                    <span>{fullName?.charAt(0).toUpperCase()}</span>
+                  </h1>
+                  <div className="flex flex-col">
+                    <span className="font-medium text-gray-900">
+                      {fullName || "Anonymous"}
+                    </span>
+                    <span>{email}</span>
                   </div>
                 </div>
-              ) : (
-                <FaUserCircle className="w-10 h-10 text-gray-600" />
               )}
 
               <Link
@@ -76,6 +72,13 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                 onClick={handleCloseSidebar}
                 className="flex items-center px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-[#0f766e]">
                 <IoHomeOutline className="mr-2" /> Home
+              </Link>
+
+              <Link
+                to={RouteCreateBlog}
+                onClick={handleCloseSidebar}
+                className="flex items-center px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-[#0f766e]">
+                <GrBlog className="mr-2" /> Create Blog
               </Link>
 
               {user?.isLoggedIn && user?.user?.role === "user" && (
