@@ -1,89 +1,89 @@
 # 📝 Blogify
 
-![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.1.16-38B2AC?logo=tailwindcss)
-![Node.js](https://img.shields.io/badge/Node.js-22.17.1-339933?logo=node.js)
-![MongoDB](https://img.shields.io/badge/MongoDB-8.2.0-47A248?logo=mongodb)
-![Mongoose](https://img.shields.io/badge/Mongoose-2.5.8-880000?logo=mongoose)
+# Note - To run this Please Create .env file, you can see the .env.example to know the required env variables
+# Note - You can find the Project setup and installation at the bottom of this README
 
+# 📝 Blog Website
 
-A full-stack blogging platform where users can securely sign up, sigin, and manage their personal blog posts. Built with React.js, Node.js, ExpressJs, and MongoDB, Blogify showcases clean authentication, protected routes, and real-time CRUD operations—all wrapped in a user-friendly interface.
+A full-stack **MERN blog application** built with **React.js, Tailwind CSS, Node.js, Express.js, and MongoDB**.  
+This project demonstrates end-to-end web development skills, including **content creation, presentation, interaction, and navigation** — all wrapped in a responsive, modern design.
 
 ---
 
 ## 🚀 Features
+- **Create Blog Posts**
+  - Responsive form with validation (`react-hook-form`).
+  - Image upload support with backend storage.
+  - Author association via Redux user state.
 
-- 🔐 **JWT Authentication** – Secure login and signup with token-based access
-- 🛡️ **Protected Routes** – Dashboard access only for authenticated users
-- 📝 **Create Blogs** – Add new blog posts with title and content
-- ✏️ **Edit Blogs** – Update existing posts via a sleek modal interface
-- 🗑️ **Delete Blogs** – Remove posts instantly with real-time UI updates
-- 📦 **Modular Codebase** – Clean separation of frontend and backend logic
+- **Display Blogs**
+  - Homepage grid of featured posts.
+  - Blog cards with image, title, excerpt, and “Read More” link.
+  - Single blog detail view with header image, title, author, date, and content.
+
+- **Comments System**
+  - Full-width responsive layout.
+  - Avatar + username on the left, date/time aligned right.
+  - Comment text displayed below in a clean card style.
+  - Differentiates own comments vs others with color-coded avatars.
+
+- **Navigation**
+  - Previous/Next blog links at the bottom of each blog detail page.
+  - Seamless reading flow across posts.
 
 ---
 
 ## 🛠️ Tech Stack
-
-| Frontend       | Backend                    | Database      |
-|----------------|----------------------------|---------------|
-| React + Vite   | Node.js + ExpressJs        |  MongoDB      |
-| Tailwind CSS   | JWT Auth, cookie-parser    | (Mongoose)    |
-| Axios          | REST API                   |               |
+- **Frontend**: React.js, Tailwind CSS, React Router, Redux  
+- **Backend**: Node.js, Express.js, RESTful APIs  
+- **Database**: MongoDB  
+- **Image Handling**: Express static file serving  
+- **Environment Variables**: `VITE_SERVER_URL` for API base URL  
 
 ---
 
-## 🧪 How to Run Locally
+## 📱 Responsiveness & UI/UX
+- Mobile-first design with adaptive layouts.  
+- Smooth transitions and hover states for interactivity.  
+- Clean typography hierarchy for readability.  
+- Consistent card styling across blogs and comments.  
 
-### 1. Clone the repo
+---
 
+## 🎯 Professional Value
+This project demonstrates:
+- **Full-stack MERN expertise** with real-world features.  
+- **Responsive UI/UX design** aligned with modern standards.  
+- **Code organization and scalability** with modular components.  
+- **Recruiter‑friendly presentation** highlighting both technical and design skills.  
+
+---
+
+## ⚡ Getting Started
+
+### Prerequisites
+- Node.js(Latest version - Recommended) and npm installed
+- MongoDB running locally or on a cloud service
+
+### Installation
 ```bash
-git clone https://github.com/Arin-Yadav/Fullstack-Blogify-website.git
-cd MINI_BLOGIFY
-```
+# Clone the repository
+git clone https://github.com/Arin-Yadav/Blogify-website.git
 
-### 2. Set up the backend
+# Navigate into the project folder
+cd fullstack-blogify-website
 
-```bash
-cd backend
-npm install
-touch .env
-```
-
-Add your environment variables:
-
-```
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
-
-Start the server:
-
-```bash
-npm run dev
-```
-
-### 3. Set up the frontend
-
-```bash
+# Navigate to Frontend
 cd frontend
+
+# Install dependencies For both frontend
 npm install
-touch .env
-```
 
-Add your API URL:
+# Navigate to Backend
+cd backend
 
-```
-VITE_SERVER_URL=Your_API_URL
-```
+# Install dependencies For both backend
+npm install
 
-Start the frontend:
-
-```bash
+# Start the development server
 npm run dev
-```
----
-
-## 🙌 Credits
-
-- Built by [Arin Yadav](https://github.com/Arin-Yadav) as a full-stack showcase project.
-- Follow Me on LinkedIN - https://www.linkedin.com/in/arinyadav/
