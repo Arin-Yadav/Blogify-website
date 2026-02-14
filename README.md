@@ -76,13 +76,13 @@ cd fullstack-blogify-website
 # Navigate to Frontend
 cd frontend
 
-# Install dependencies For both frontend
+# Install dependencies For frontend
 npm install
 
 # Navigate to Backend
 cd backend
 
-# Install dependencies For both backend
+# Install dependencies For backend
 npm install
 
 # Start the development server
