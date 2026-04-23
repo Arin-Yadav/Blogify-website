@@ -14,7 +14,7 @@
     "@headlessui/react": "^2.2.9",
     "@reduxjs/toolkit": "^2.11.2",
     "@tailwindcss/vite": "^4.1.16",
-    "axios": "^1.13.2",
+    "axios": "^1.15.2",
     "ckeditor5": "^47.4.0",
     "dayjs": "^1.11.19",
     "entities": "^7.0.1",
